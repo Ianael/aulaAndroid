@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Sistema_area</string>
+    <string name="title_activity_dados_circulo">DadosCirculo</string>
+    <string name="title_activity_dados_triangulo">DadosTriangulo</string>
+    <string name="title_activity_dados_retangulo">DadosRetangulo</string>
+    <string name="title_activity_area">Area</string>
+    <string name="c_rculo">Círculo</string>
+    <string name="quadrado">Quadrado</string>
+    <string name="tri_ngulo">Triângulo</string>
+    <string name="selecione_a_forma">Selecione a forma:</string>
+    <string name="avan_ar">Avançar</string>
+    <string name="informe_os_dados_do_c_rculo">Informe os dados do círculo:</string>
+    <string name="informe_os_dados_do_ret_ngulo">Informe os dados do retângulo:</string>
+    <string name="altura">Altura:</string>
+    <string name="base">Base:</string>
+    <string name="informe_os_dados_do_tri_ngulo">Informe os dados do triângulo:</string>
+</resources>
