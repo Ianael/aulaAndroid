@@ -26,7 +26,7 @@ public class AutoHolder extends RecyclerView.ViewHolder{
 
     public void atualiza(Autonomia autonomia){
         tvData.setText( autonomia.getData() );
-        tvL.setText( Double.toString( autonomia.getL() ));
+        tvL.setText(Double.toString( autonomia.getL() ));
         String x = ""+autonomia.getKm();
         tvKm.setText(x);
 

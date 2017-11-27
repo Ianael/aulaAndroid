@@ -4,35 +4,45 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    ArrayList<Autonomia> info = new ArrayList<>();
+    private TextView tvAuto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        TextView tvAuto = (TextView) findViewById(R.id.tvAuto);
-        //tvAuto.setText(autonomia);
+        tvAuto = (TextView) findViewById(R.id.tvAuto);
+    }
+
+    protected void onResume(){
+
+        if(Autonomia.info.size() > 0){
+            double KmTotal = 0;
+            double LTotal = 0;
+
+            for(int i = 0; i < Autonomia.info.size(); i++){
+                LTotal += Autonomia.info.get(i).getL();
+                KmTotal += Autonomia.info.get(i).getKm();
+            }
+
+            double autonomia = KmTotal / LTotal;
+            tvAuto.setText(String.format("%.2f",autonomia));
+        }
+
+        super.onResume();
     }
 
     public void novo(View clicou){
         Intent intencao = new Intent(getApplicationContext(), novo.class);
-        intencao.putExtra("lista", info);
         startActivity(intencao);
     }
 
     public void visualisar(View clicou){
-        Intent intencao = new Intent(getApplicationContext(), lista.class);
-        intencao.putExtra("lista", info);
+        Intent intencao = new Intent(getApplicationContext(), visualisar.class);
         startActivity(intencao);
     }
 }

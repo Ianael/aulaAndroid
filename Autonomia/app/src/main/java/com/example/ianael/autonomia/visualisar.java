@@ -5,8 +5,6 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-import java.util.ArrayList;
-
 public class visualisar extends AppCompatActivity {
 
     @Override
@@ -18,7 +16,7 @@ public class visualisar extends AppCompatActivity {
 
         AutoAdapter adapter = new AutoAdapter();
 
-        adapter.setInfo((ArrayList<Autonomia>) getIntent().getSerializableExtra("info"));
+        adapter.setInfo(Autonomia.info);
         rvLista.setLayoutManager(new LinearLayoutManager(this.getApplicationContext()));
         rvLista.setAdapter(adapter);
     }

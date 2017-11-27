@@ -1,6 +1,5 @@
 package com.example.ianael.autonomia;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -27,16 +26,35 @@ public class novo extends AppCompatActivity {
     }
 
     public void confirmar(View clicou){
-        if(etKm > etKm){
-            etKm.setError("Km inválida");
-            Toast.makeText(this.getApplicationContext(), "A Km atual deve ser maior que a última adicionada!!!", Toast.LENGTH_SHORT).show();
 
-            //double autonomia = KmTotal/LitrosTotal;
+        if(etData.getText().toString().equals("")) {
+            Toast.makeText(getApplicationContext(), "Insira um valor válido para Data!!!", Toast.LENGTH_LONG).show();
             return;
-        }else {
-            Intent intencao = new Intent(getApplicationContext(), MainActivity.class);
-            intencao.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(intencao);
         }
+
+        if(etKm.getText().toString().equals("")) {
+            Toast.makeText(getApplicationContext(), "Insira um valor válido para Km!!!", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        if(Autonomia.info.size() > 0 && Autonomia.info.get(Autonomia.info.size() - 1).getKm() >= Float.parseFloat(etKm.getText().toString())) {
+            Toast.makeText(getApplicationContext(), "A Km atual deve ser maior que a última adicionada!!!", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        if(etL.getText().toString().equals("")) {
+            Toast.makeText(getApplicationContext(), "Insira um valor válido para Litros!!!", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        if(spPosto.getSelectedItemId() == 0) {
+            Toast.makeText(getApplicationContext(), "Selecione um posto!!!", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        Autonomia autonomia = new Autonomia(etData.getText().toString(), Float.parseFloat(etKm.getText().toString()), Float.parseFloat(etL.getText().toString()), spPosto.getSelectedItem().toString());
+
+        Autonomia.info.add(autonomia);
+        finish();
     }
 }

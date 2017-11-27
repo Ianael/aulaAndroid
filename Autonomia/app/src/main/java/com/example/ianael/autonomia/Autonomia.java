@@ -1,16 +1,19 @@
 package com.example.ianael.autonomia;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  * Created by ianael on 26/11/2017.
  */
 
-public class Autonomia implements Serializable{
+public class Autonomia {
     private String data;
     private double km;
     private double l;
     private String posto;
+
+    public static ArrayList<Autonomia> info = new ArrayList<>();
 
     public Autonomia(String data, double km, double l, String posto){
         this.data = data;
