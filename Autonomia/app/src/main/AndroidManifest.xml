@@ -17,7 +17,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".novo" />
-        <activity android:name=".lista"></activity>
+        <activity android:name=".lista" />
+        <activity android:name=".visualisar"></activity>
     </application>
 
 </manifest>

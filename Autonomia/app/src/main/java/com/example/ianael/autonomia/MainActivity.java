@@ -9,7 +9,11 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
+
+    ArrayList<Autonomia> info = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,11 +26,13 @@ public class MainActivity extends AppCompatActivity {
 
     public void novo(View clicou){
         Intent intencao = new Intent(getApplicationContext(), novo.class);
+        intencao.putExtra("lista", info);
         startActivity(intencao);
     }
 
     public void visualisar(View clicou){
         Intent intencao = new Intent(getApplicationContext(), lista.class);
+        intencao.putExtra("lista", info);
         startActivity(intencao);
     }
 }
