@@ -1,11 +1,13 @@
 package com.example.ianael.autonomia;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
+import io.realm.Realm;
 
 public class novo extends AppCompatActivity {
 
@@ -37,7 +39,7 @@ public class novo extends AppCompatActivity {
             return;
         }
 
-        if(Autonomia.info.size() > 0 && Autonomia.info.get(Autonomia.info.size() - 1).getKm() >= Float.parseFloat(etKm.getText().toString())) {
+        if(Autonomia.info.size() > 0 && Autonomia.info.get(Autonomia.info.size() - 1).getKm() >= Double.parseDouble(etKm.getText().toString())) {
             Toast.makeText(getApplicationContext(), "A Km atual deve ser maior que a última adicionada!!!", Toast.LENGTH_LONG).show();
             return;
         }
@@ -52,9 +54,24 @@ public class novo extends AppCompatActivity {
             return;
         }
 
-        Autonomia autonomia = new Autonomia(etData.getText().toString(), Float.parseFloat(etKm.getText().toString()), Float.parseFloat(etL.getText().toString()), spPosto.getSelectedItem().toString());
+        Realm realm = Realm.getDefaultInstance();
+        realm.beginTransaction();
 
-        Autonomia.info.add(autonomia);
-        finish();
+        Autonomia r = realm.createObject(Autonomia.class);
+
+        r.setData(etData.getText().toString());
+        r.setKm(Double.parseDouble(etKm.getText().toString()));
+        r.setL(Double.parseDouble(etL.getText().toString()));
+        r.setPosto(spPosto.getSelectedItem().toString());
+
+        //Autonomia autonomia = new Autonomia(etData.getText().toString(), FDouble.parseDouble(etKm.getText().toString()), Double.parseDouble(etL.getText().toString()), spPosto.getSelectedItem().toString());
+
+        realm.copyFromRealm(r);
+        realm.commitTransaction();
+
+        //Autonomia.info.add(autonomia);
+        Intent intencao = new Intent(getApplicationContext(), MainActivity.class);
+        intencao.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intencao);
     }
 }

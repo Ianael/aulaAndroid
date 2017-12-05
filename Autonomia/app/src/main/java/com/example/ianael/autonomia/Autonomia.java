@@ -1,19 +1,21 @@
 package com.example.ianael.autonomia;
 
-import java.io.Serializable;
 import java.util.ArrayList;
+import io.realm.RealmObject;
 
 /**
  * Created by ianael on 26/11/2017.
  */
 
-public class Autonomia {
+public class Autonomia extends RealmObject{
     private String data;
     private double km;
     private double l;
     private String posto;
 
-    public static ArrayList<Autonomia> info = new ArrayList<>();
+    public static ArrayList <Autonomia> info = new ArrayList<>();
+
+    public Autonomia(){}
 
     public Autonomia(String data, double km, double l, String posto){
         this.data = data;
