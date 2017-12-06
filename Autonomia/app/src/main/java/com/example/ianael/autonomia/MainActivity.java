@@ -27,10 +27,14 @@ public class MainActivity extends AppCompatActivity {
         Realm realm = Realm.getDefaultInstance();
 
         RealmResults <Autonomia> result = realm.where(Autonomia.class).findAll();
+
         for(Autonomia atual : result){
             Autonomia.info.add(atual);
         }
 
+    }
+
+    protected void onResume(){
         if(Autonomia.info.size() > 0){
             double KmTotal = 0;
             double LTotal = 0;
@@ -39,18 +43,12 @@ public class MainActivity extends AppCompatActivity {
                 LTotal += Autonomia.info.get(i).getL();
                 KmTotal += Autonomia.info.get(i).getKm();
             }
-
+    
             double autonomia = KmTotal / LTotal;
             tvAuto.setText(String.format("%.2f",autonomia));
         }
+        super.onResume();
     }
-
-   // protected void onResume(){
-
-
-
-   //     super.onResume();
-    //}
 
     public void novo(View clicou){
         Intent intencao = new Intent(getApplicationContext(), novo.class);

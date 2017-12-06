@@ -3,6 +3,7 @@ package com.example.ianael.autonomia;
 import java.util.ArrayList;
 import io.realm.RealmObject;
 
+
 /**
  * Created by ianael on 26/11/2017.
  */
