@@ -64,12 +64,10 @@ public class novo extends AppCompatActivity {
         r.setL(Double.parseDouble(etL.getText().toString()));
         r.setPosto(spPosto.getSelectedItem().toString());
 
-        //Autonomia autonomia = new Autonomia(etData.getText().toString(), Double.parseDouble(etKm.getText().toString()), Double.parseDouble(etL.getText().toString()), spPosto.getSelectedItem().toString());
-
         realm.copyFromRealm(r);
         realm.commitTransaction();
 
-        //Autonomia.info.add(autonomia);
+        Autonomia.info.add(r);
         Intent intencao = new Intent(getApplicationContext(), MainActivity.class);
         intencao.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intencao);

@@ -17,19 +17,11 @@ public class visualisar extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_visualisar);
 
-        ArrayList<Autonomia> list = new ArrayList<>();
-
-        Realm realm = Realm.getDefaultInstance();
-        RealmResults <Autonomia> result = realm.where(Autonomia.class).findAll();
-        for (Autonomia atual : result) {
-            list.add(atual);
-        }
-
         RecyclerView rvLista = findViewById(R.id.rvLista);
 
         AutoAdapter adapter = new AutoAdapter();
 
-        adapter.setInfo(list);
+        adapter.setInfo(Autonomia.info);
         rvLista.setLayoutManager(new LinearLayoutManager(this.getApplicationContext()));
         rvLista.setAdapter(adapter);
     }
